@@ -5,9 +5,12 @@ import com.projeto.todosimple.models.User;
 import com.projeto.todosimple.repositories.TaskRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TaskService {
 
     @Autowired
@@ -21,6 +24,11 @@ public class TaskService {
         return task.orElseThrow(() -> new RuntimeException(
                 "Tarefa não encontrada! Id: " + id + ", Tipo: " + Task.class.getName()
         ));
+    }
+
+    public List<Task> findAllByUserId(Long user_id) {
+        List<Task> tasks = taskRepository.findByUser_Id(user_id);
+        return tasks;
     }
 
     @Transactional
