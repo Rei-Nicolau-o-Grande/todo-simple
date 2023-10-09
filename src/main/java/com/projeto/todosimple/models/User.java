@@ -40,8 +40,8 @@ public class User {
     @Size(min = 2, max = 100)
     private String username;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", length = 100, nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull(groups = {CreateUser.class, UpdateUser.class})
     @NotEmpty(groups = {CreateUser.class, UpdateUser.class})
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 100)
